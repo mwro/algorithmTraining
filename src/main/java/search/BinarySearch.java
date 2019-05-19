@@ -27,7 +27,7 @@ public class BinarySearch {
                 lowIndex = midIndex + 1;
             }
         }
-        System.out.println("Completed search of array of size " + array.length + " in " + iterationCount + " steps.");
+        System.out.println("Completed search of array of size " + array.length + " in " + iterationCount + " steps, no result found.");
         return -1;
     }
 }
