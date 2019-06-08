@@ -26,31 +26,24 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
         BinarySearchTree<T> nodeToInsert = new BinarySearchTree<>(element);
-        insert(nodeToInsert);
+        insert(this, nodeToInsert);
     }
 
-    public void insert(BinarySearchTree<T> nodeToInsert) {
-
-        int compare = compareTo(nodeToInsert);
-
-        if (compare == 0) {
-            return;
+    public BinarySearchTree<T> insert(BinarySearchTree<T> possibleParent, BinarySearchTree<T> nodeToInsert) {
+        if(possibleParent == null) {
+            return nodeToInsert;
         }
+
+        int compare = possibleParent.compareTo(nodeToInsert);
 
         if (compare < 0) {
-            if (rightNode == null) {
-                rightNode = nodeToInsert;
-                nodeToInsert.parentNode = this;
-            } else {
-                rightNode.insert(nodeToInsert);
-            }
-        } else {
-            if (leftNode == null) {
-                leftNode = nodeToInsert;
-                nodeToInsert.parentNode = this;
-            } else {
-                leftNode.insert(nodeToInsert);
-            }
+            possibleParent.rightNode = insert(possibleParent.rightNode, nodeToInsert);
+        } else if (compare > 0) {
+            possibleParent.leftNode = insert(possibleParent.leftNode, nodeToInsert);
         }
+
+        return possibleParent;
     }
+
+
 }
