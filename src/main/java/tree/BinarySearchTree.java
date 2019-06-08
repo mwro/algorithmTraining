@@ -62,4 +62,26 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         return node;
     }
+
+    public T findMinValue() {
+        return findMin().key;
+    }
+
+    private BinarySearchTree<T> findMin() {
+        if (leftNode == null) {
+            return this;
+        }
+        return leftNode.findMin();
+    }
+
+    public T findMaxValue() {
+        return findMax().key;
+    }
+
+    private BinarySearchTree<T> findMax() {
+        if (rightNode == null) {
+            return this;
+        }
+        return rightNode.findMax();
+    }
 }

@@ -18,8 +18,15 @@ public class BinarySearchTreeTest {
         checkIfContains(bst, 1000);
         checkIfContains(bst, 21);
 
+        System.out.println("Min value: " + bst.findMinValue());
+        System.out.println("Max value: " + bst.findMaxValue());
+
         bst.insert(-2);
         checkIfContains(bst, -2);
+        bst.insert(1001);
+
+        System.out.println("Min value: " + bst.findMinValue());
+        System.out.println("Max value: " + bst.findMaxValue());
     }
 
     private static void checkIfContains(BinarySearchTree<Integer> bst, int i) {
