@@ -4,7 +4,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private T key;
 
-    private BinarySearchTree<T> parentNode;
     private BinarySearchTree<T> leftNode;
     private BinarySearchTree<T> rightNode;
 
@@ -29,7 +28,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         insert(this, nodeToInsert);
     }
 
-    public BinarySearchTree<T> insert(BinarySearchTree<T> possibleParent, BinarySearchTree<T> nodeToInsert) {
+    private BinarySearchTree<T> insert(BinarySearchTree<T> possibleParent, BinarySearchTree<T> nodeToInsert) {
         if(possibleParent == null) {
             return nodeToInsert;
         }
@@ -45,5 +44,22 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return possibleParent;
     }
 
+    public boolean contains(T value) {
+        return search(this, value) != null;
+    }
 
+    private BinarySearchTree<T> search(BinarySearchTree<T> node, T value) {
+        if (node == null) {
+            return null;
+        }
+
+        int compare = node.key.compareTo(value);
+
+        if (compare < 0) {
+            return search(node.rightNode, value);
+        } else if (compare > 0) {
+            return search(node.leftNode, value);
+        }
+        return node;
+    }
 }
